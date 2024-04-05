@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
+import AddMovie from "./components/AddMovie";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -37,6 +38,12 @@ const App = () => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
+  // chal to useEffect(() => {fetchMoviesHandler();},[]); se bhi jayega but best practice ye h ki array of dependencies me saari dependency add ki or depend kr rha h fetchMoviesHandler par but agar fetchMoviesHandler directly daal diya to kya hoga ki state update hogi to compoent re-render karega or JS me funs are objs so re-rendering me fun change hoga jiski wajah se useEffect me infinite loop create ho jayega isse bachne ke liye useCallback use kr rhe hain or fetchMoviesHandler function me koi dependency nhi h to udhar empty array rkh diya h. With this, we have ensured that fetchMoviesHandler fun is not re-created unnecessarily.
+
+  function addMovieHandler(movie) {
+    console.log(movie);
+  }
+
   let content = <p>Found no movies.</p>;
 
   if (movies.length > 0) {
@@ -53,6 +60,9 @@ const App = () => {
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
