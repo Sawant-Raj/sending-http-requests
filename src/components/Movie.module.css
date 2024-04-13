@@ -18,3 +18,18 @@
   margin: 0;
   font-size: 1rem;
 }
+
+.movie button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movie button:hover {
+  background-color: #c82333; /* Darker red color on hover */
+}
